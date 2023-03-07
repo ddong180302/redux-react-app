@@ -1,10 +1,10 @@
-
+import Nav from './views/Nav';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      app
+      <Nav />
     </div>
   );
 }
