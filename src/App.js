@@ -1,54 +1,58 @@
+import React, { useState } from 'react';
 import Nav from './views/Nav';
 import './App.css';
-import React, { useState } from 'react';
 import Todo from './views/Todo';
 
-function App() {
-
+const App = () => {
   let [name, setName] = useState('dong');
-  const [address, setAddress] = useState('');
+  const [ten, setTen] = useState('dong');
   const [todos, setTodos] = useState([
-    { id: '01', work: 'it', age: '21' },
-    { id: '02', work: 'at', age: '21' },
-    { id: '03', work: 'ct', age: '21' },
-    { id: '04', work: 'gv', age: '23' }
+    { id: '01', title: 'học code', age: '20' },
+    { id: '02', title: 'chơi game', age: '21' },
+    { id: '03', title: 'xem phim', age: '20' },
   ])
 
-  /*name: giá trị của biến
-  setName: hàm xử lý khi biến có sự thay đổi
-  */
-
-
-  const handleOnClick = (event) => {
-    if (!address) {
-      alert('empty work!')
+  const handleOnclick = (event) => {
+    if (!ten) {
+      alert('empty ten')
       return;
     }
-    let newTodo = { id: '', work: address, age: '19' };
+    let newTodo = { id: Math.floor(Math.random(10000) * 10) + 1, title: ten, age: '23' }
     setTodos([...todos, newTodo]);
-    setAddress('')
+    setTen('')
   }
 
   const handleOnChange = (event) => {
-    setAddress(event.target.value);
+    setTen(event.target.value);
   }
-
+  const handleDelete = (id) => {
+    let currentTodo = todos;
+    currentTodo = currentTodo.filter(item => item.id !== id)
+    setTodos(currentTodo);
+  }
+  // const handleOnChangeAge = (event) => {
+  //   setTodos.age(event.target.value);
+  // }
   return (
-    <div className="App">
+    <div className='App'>
       <Nav />
       <h1>hello world with {name}</h1>
       <Todo
         todos={todos}
-        title={"mytodos"}
+        title={'My todo'}
+        handleDelete={handleDelete}
       />
       <Todo
-        todos={todos.filter(item => item.age === '21')}
-        title={"age todo"}
+        todos={todos.filter(item => item.age === '20')}
+        title={'My todo age'}
+        handleDelete={handleDelete}
+
       />
-      <input type='input' value={address} onChange={(event) => handleOnChange(event)} />
-      <button type='button' onClick={(event) => handleOnClick(event)}>click me</button>
+      <input type='input' value={ten} onChange={(event => handleOnChange(event))} placeholder='title' />
+      {/* <input type='input' value={age} onChange={(event => handleOnChangeAge(event))} placeholder='age' /> */}
+      <button type='button' onClick={(event) => handleOnclick(event)}> click me</button>
     </div>
-  );
+  )
 }
 
 export default App;
