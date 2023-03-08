@@ -9,7 +9,9 @@ function App() {
   const [address, setAddress] = useState('');
   const [todos, setTodos] = useState([
     { id: '01', work: 'it', age: '21' },
-    { id: '02', work: 'gv', age: '23' }
+    { id: '02', work: 'at', age: '21' },
+    { id: '03', work: 'ct', age: '21' },
+    { id: '04', work: 'gv', age: '23' }
   ])
 
   /*name: giá trị của biến
@@ -37,6 +39,11 @@ function App() {
       <h1>hello world with {name}</h1>
       <Todo
         todos={todos}
+        title={"mytodos"}
+      />
+      <Todo
+        todos={todos.filter(item => item.age === '21')}
+        title={"age todo"}
       />
       <input type='input' value={address} onChange={(event) => handleOnChange(event)} />
       <button type='button' onClick={(event) => handleOnClick(event)}>click me</button>

@@ -4,6 +4,9 @@ const Todo = (props) => {
     const todos = props.todos;
     return (
         <div className='todo-container'>
+            <div className="title">
+                {props.title}
+            </div>
             <div className='todo-list'>
                 {todos.map(item => {
                     return (
@@ -11,6 +14,7 @@ const Todo = (props) => {
                     )
                 })}
             </div>
+            <hr />
         </div>
     )
 }
