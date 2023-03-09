@@ -7,7 +7,7 @@ const Covid = () => {
     const [dataCovid, setDataCovid] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        setTimeout(() => {
+        try {
             async function fetchData() {
                 // You can await here
 
@@ -25,8 +25,10 @@ const Covid = () => {
                 setLoading(false)
             }
             fetchData();
-        }, 5000)
 
+        } catch (error) {
+            console.log(error)
+        }
     }, []);
     return (
         <table id="customers">
